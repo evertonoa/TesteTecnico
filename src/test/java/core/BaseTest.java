@@ -1,20 +1,25 @@
 package core;
 
+import static core.DriverFactory.getDriver;
+import static core.DriverFactory.killDriver;
+
+import java.util.concurrent.TimeUnit;
+
 import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.WebDriver;
 
 public class BaseTest {
-	
-	private WebDriver driver;
 
 	@Before
 	public void setUp() {
-		driver = Web.createChromeDriver();
+		getDriver().get("http://www.way2automation.com/angularjs-protractor/banking/#/login");
+		getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
 	}
-	
+
 	@After
 	public void tearDown() {
-		driver.quit();
+		killDriver();
 	}
+
 }

@@ -1,9 +1,10 @@
 package pages;
 
+import static core.DriverFactory.getDriver;
+
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -11,13 +12,9 @@ import core.BasePage;
 
 public class BankingManagerPage extends BasePage {
 
-	public BankingManagerPage(WebDriver driver) {
-		super(driver);
-	}
-
 	public BankingManagerPage clickOnAddCustomerButton() {
 		clickOnButton("//button[@ng-click='addCust()']");
-		return new BankingManagerPage(driver);
+		return new BankingManagerPage();
 	}
 	
 	public BankingManagerPage clickOnOpenAccountButton() {
@@ -27,7 +24,7 @@ public class BankingManagerPage extends BasePage {
 
 	public BankingManagerPage clickOnCustomerButton() {
 		clickOnButton("//button[@ng-click='showCust()']");
-		return new BankingManagerPage(driver);
+		return new BankingManagerPage();
 	}
 
 	public BankingManagerPage typeFirstName(String firstName) {
@@ -57,7 +54,7 @@ public class BankingManagerPage extends BasePage {
 	}
 	
 	public BankingManagerPage checkAlertSuccessMessage(String message) {
-		Alert alert = driver.switchTo().alert();
+		Alert alert = getDriver().switchTo().alert();
 		String alertMessage = alert.getText();
 		Assert.assertTrue(alertMessage.contains(message));
 		alert.accept();
@@ -65,14 +62,14 @@ public class BankingManagerPage extends BasePage {
 	}
 	
 	public BankingManagerPage selectCustomer(String text) {
-		WebElement element = driver.findElement(By.id("userSelect"));
+		WebElement element = getDriver().findElement(By.id("userSelect"));
 		Select combo = new Select(element);
 		combo.selectByVisibleText(text);
 		return this;
 	}
 	
 	public BankingManagerPage selectCurrency(String text) {
-		WebElement element = driver.findElement(By.id("currency"));
+		WebElement element = getDriver().findElement(By.id("currency"));
 		Select combo = new Select(element);
 		combo.selectByVisibleText(text);
 		return this;

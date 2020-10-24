@@ -1,30 +1,15 @@
 package tests;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 
-import core.Web;
+import core.BaseTest;
 import pages.BankingPage;
 
-public class LoginTest {
-	
-	private WebDriver driver;
-
-	@Before
-	public void setUp() {
-		driver = Web.createChromeDriver();
-	}
-
-	@After
-	public void tearDown() {
-		driver.quit();
-	}
+public class LoginTest extends BaseTest{
 	
 	@Test
 	public void loginIntoTheAccountTest () throws InterruptedException {
-		new BankingPage(driver)
+		new BankingPage()
 			.clickOnCustomerLoginButton()
 			.selectAccount("Harry Potter")
 			.clickOnLoginButton();
@@ -34,7 +19,7 @@ public class LoginTest {
 	
 	@Test
 	public void LogoutFromTheAccountTest() throws InterruptedException {
-		new BankingPage(driver)
+		new BankingPage()
 			.clickOnCustomerLoginButton()
 			.selectAccount("Harry Potter")
 			.clickOnLoginButton()

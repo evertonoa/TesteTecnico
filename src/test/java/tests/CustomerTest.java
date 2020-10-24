@@ -1,31 +1,15 @@
 package tests;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 
 import core.BaseTest;
-import core.Web;
 import pages.BankingPage;
 
 public class CustomerTest extends BaseTest{
 
-	private WebDriver driver;
-	
-	@Before
-	public void setUp() {
-		driver = Web.createChromeDriver();
-	}
-	
-	@After
-	public void tearDown() {
-		driver.quit();
-	}
-
 	@Test
 	public void addNewCustomerTest() throws InterruptedException {
-		new BankingPage(driver)
+		new BankingPage()
 			.clickOnBankManagerLoginButton()
 			.clickOnAddCustomerButton()
 			.typeFirstName("Jose")
@@ -39,7 +23,7 @@ public class CustomerTest extends BaseTest{
 	
 	@Test
 	public void deleteCustomerTest() throws InterruptedException {
-		new BankingPage(driver)
+		new BankingPage()
 			.clickOnBankManagerLoginButton()
 			.clickOnCustomerButton()
 			.removeCustomer("Neville")

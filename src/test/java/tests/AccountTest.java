@@ -1,31 +1,15 @@
 package tests;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 
 import core.BaseTest;
-import core.Web;
 import pages.BankingPage;
 
 public class AccountTest extends BaseTest{
 	
-	private WebDriver driver;
-	
-	@Before
-	public void setUp() {
-		driver = Web.createChromeDriver();
-	}
-	
-	@After
-	public void tearDown() {
-		driver.quit();
-	}
-	
 	@Test
 	public void openAccountTest() throws InterruptedException {
-		new BankingPage(driver)
+		new BankingPage()
 			.clickOnBankManagerLoginButton()
 			.clickOnOpenAccountButton()
 			.selectCustomer("Harry Potter")

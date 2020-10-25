@@ -15,11 +15,8 @@ public class TransationsTest extends BaseTest{
 	public final String AMOUNT_TO_BE_DEPOSITED = "200";
 	public final String AMOUNT_TO_BE_WITHDREW = "100";
 	public final String AMOUNT_TO_BE_WITHDREW_MORE_THAN_BALANCE = "300";
-	public final String DEPOSIT_SUCCESS_MESSAGE_XPATH = "//span[@ng-show='message']";
 	public final String DEPOSIT_SUCCESS_MESSAGE = "Deposit Successful";
-	public final String WITHDRAW_SUCCESS_MESSAGE_XPATH = "//span[@ng-show='message']";
 	public final String WITHDRAW_SUCCESS_MESSAGE = "Transaction successful";
-	public final String WITHDRAW_FAIL_MESSAGE_XPATH = "//span[@ng-show='message']";
 	public final String WITHDRAW_FAIL_MESSAGE = "Transaction Failed. You can not withdraw amount more than the balance.";
 	
 	@Test
@@ -37,7 +34,7 @@ public class TransationsTest extends BaseTest{
 			.typeDepositAmount(AMOUNT_TO_BE_DEPOSITED)
 			.clickOnConfirmDepositButton();
 
-		Assert.assertEquals(DEPOSIT_SUCCESS_MESSAGE, accountPage.getText(DEPOSIT_SUCCESS_MESSAGE_XPATH));
+		Assert.assertEquals(DEPOSIT_SUCCESS_MESSAGE, accountPage.getSuccessDepositMessage());
 		
 		int balanceAfterDeposit = Integer.parseInt(accountPage.getAccountBalance());
 		int amountDeposited = Integer.parseInt(AMOUNT_TO_BE_DEPOSITED);
@@ -47,6 +44,7 @@ public class TransationsTest extends BaseTest{
 	
 	@Test
 	public void withdrawlTest() throws InterruptedException {
+		AccountPage accountPage = new AccountPage();
 		new BankingPage()
 			.clickOnCustomerLoginButton()
 			.selectAccountName(CUSTOMER_NAME)
@@ -58,10 +56,17 @@ public class TransationsTest extends BaseTest{
 		
 		Thread.sleep(1000);
 		
-		new AccountPage().typeDepositAmount(AMOUNT_TO_BE_WITHDREW)
+		int balanceBeforeWithdraw = Integer.parseInt(accountPage.getAccountBalance());
+
+		accountPage.typeWithdrawAmount(AMOUNT_TO_BE_WITHDREW)
 			.clickOnConfirmWithdrawButton();
 			
-		Assert.assertEquals(WITHDRAW_SUCCESS_MESSAGE, new AccountPage().getText(WITHDRAW_SUCCESS_MESSAGE_XPATH));
+		Assert.assertEquals(WITHDRAW_SUCCESS_MESSAGE, new AccountPage().getSuccessWithdrawMessage());
+		
+		int balanceAfterWithdraw = Integer.parseInt(accountPage.getAccountBalance());
+		int amountWithdrew = Integer.parseInt(AMOUNT_TO_BE_WITHDREW);
+		
+		Assert.assertEquals(balanceBeforeWithdraw-amountWithdrew, balanceAfterWithdraw);
 	}
 	
 	@Test
@@ -72,9 +77,8 @@ public class TransationsTest extends BaseTest{
 			.clickOnLoginButton()
 			.clickOnWithdrawlButton()
 			.typeDepositAmount(AMOUNT_TO_BE_WITHDREW)
-			.clickOnConfirmWithdrawButton()
-			;
+			.clickOnConfirmWithdrawButton();
 			
-		Assert.assertEquals(WITHDRAW_FAIL_MESSAGE, new AccountPage().getText(WITHDRAW_FAIL_MESSAGE_XPATH));
+		Assert.assertEquals(WITHDRAW_FAIL_MESSAGE, new AccountPage().getFailWithdrawMessage());
 	}
 }

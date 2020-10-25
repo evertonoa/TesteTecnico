@@ -47,5 +47,4 @@ public class BasePage {
 		Select combo = new Select(element);
 		combo.selectByVisibleText(text);
 	}
-	
 }

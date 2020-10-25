@@ -34,6 +34,6 @@ public class OpenAccountTest extends BaseTest{
 			.clickOnLoginButton()
 			.selectAccountNumberOnCombo(accountNumber);;
 
-		Assert.assertEquals(accountNumber, new AccountPage().getText("//div[@ng-hide]/strong[1]"));
+		Assert.assertEquals(accountNumber, new AccountPage().getAccountNumber());
 	}
 }

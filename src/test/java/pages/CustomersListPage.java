@@ -18,5 +18,4 @@ public class CustomersListPage extends BasePage {
 		clickOnButton(DELETE_BUTTON_XPATH);
 		return this;
 	}
-	
 }

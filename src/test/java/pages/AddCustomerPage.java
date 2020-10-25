@@ -41,6 +41,4 @@ public class AddCustomerPage extends BasePage{
 		acceptAlert();
 		return this;
 	}
-	
-	
 }

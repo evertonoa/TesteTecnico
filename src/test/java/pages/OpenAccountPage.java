@@ -36,5 +36,4 @@ public class OpenAccountPage extends BasePage{
 	public String getAlertSuccessMessage() {
 		return getAlertMessage();
 	}
-	
 }

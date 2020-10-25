@@ -14,6 +14,7 @@ import tests.LoginTest;
 	CustomerTest.class,
 	LoginTest.class
 })
+
 public class SuiteTests {
 	
 }

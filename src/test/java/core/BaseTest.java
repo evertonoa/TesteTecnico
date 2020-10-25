@@ -19,22 +19,20 @@ public class BaseTest {
 
 	@Rule
 	public TestName testName = new TestName();
-	
+
 	@Before
 	public void setUp() {
 		getDriver().get("http://www.way2automation.com/angularjs-protractor/banking/#/login");
 		getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
 	}
 
 	@After
 	public void tearDown() throws IOException {
 		TakesScreenshot ss = (TakesScreenshot) getDriver();
 		File file = ss.getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(file, new File("target" + File.separator + 
-				"screenshot" + File.separator + testName.getMethodName() + ".jpg"));
-		
+		FileUtils.copyFile(file, new File(
+				"target" + File.separator + "screenshot" + File.separator + testName.getMethodName() + ".jpg"));
+
 		killDriver();
 	}
-
 }

@@ -31,4 +31,12 @@ public class BasePage {
 		Alert alert = getDriver().switchTo().alert();
 		alert.accept();
 	}
+	
+	public String getText(String xpath) {
+		return getDriver().findElement(By.xpath(xpath)).getText();
+	}
+	
+	public String getPageUrl() {
+		return getDriver().getCurrentUrl();
+	}
 }

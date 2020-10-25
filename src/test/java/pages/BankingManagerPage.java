@@ -18,7 +18,7 @@ public class BankingManagerPage extends BasePage {
 		return new OpenAccountPage();
 	}
 
-	public CustomersListPage clickOnCustomerButton() {
+	public CustomersListPage clickOnCustomerListButton() {
 		clickOnButton(CUSTOMERS_LIST_BUTTON_XPATH);
 		return new CustomersListPage();
 	}

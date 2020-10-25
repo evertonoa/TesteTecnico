@@ -33,5 +33,14 @@ public class AddCustomerPage extends BasePage{
 		return getAlertMessage();
 	}
 	
+	public String getAlertCustumerDuplicateMessage() {
+		return getAlertMessage();
+	}
+	
+	public AddCustomerPage acceptAlertSuccessMessage() {
+		acceptAlert();
+		return this;
+	}
+	
 	
 }

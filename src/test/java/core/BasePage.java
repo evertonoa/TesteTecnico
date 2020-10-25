@@ -12,7 +12,12 @@ public class BasePage {
 	}
 	
 	public void typeTextIntoField(String xpath, String text) {
+		clearTextField(xpath);
 		getDriver().findElement(By.xpath(xpath)).sendKeys(text);
+	}
+	
+	public void clearTextField(String xpath) {
+		getDriver().findElement(By.xpath(xpath)).clear();
 	}
 	
 	public String getAlertMessage() {
@@ -20,5 +25,10 @@ public class BasePage {
 		String alertMessage = alert.getText();
 		alert.accept();
 		return alertMessage;
+	}
+	
+	public void acceptAlert() {
+		Alert alert = getDriver().switchTo().alert();
+		alert.accept();
 	}
 }

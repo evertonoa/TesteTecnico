@@ -8,16 +8,14 @@ import pages.BankingPage;
 public class AccountTest extends BaseTest{
 	
 	@Test
-	public void openAccountTest() throws InterruptedException {
+	public void openAccountTest() {
 		new BankingPage()
 			.clickOnBankManagerLoginButton()
 			.clickOnOpenAccountButton()
 			.selectCustomer("Harry Potter")
 			.selectCurrency("Dollar")
 			.clickOnProcessButton()
-			.checkAlertSuccessMessage("Account created successfully with account Number")
-			;
-		Thread.sleep(2000);
+			.checkAlertSuccessMessage("Account created successfully with account Number");
 	}
 	
 	

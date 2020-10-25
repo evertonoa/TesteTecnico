@@ -8,7 +8,7 @@ import pages.BankingPage;
 public class CustomerTest extends BaseTest{
 
 	@Test
-	public void addNewCustomerTest() throws InterruptedException {
+	public void addNewCustomerTest() {
 		new BankingPage()
 			.clickOnBankManagerLoginButton()
 			.clickOnAddCustomerButton()
@@ -16,18 +16,14 @@ public class CustomerTest extends BaseTest{
 			.typeLastName("Silva")
 			.typePostCode("11111")
 			.AddCustomer()
-			.checkAlertSuccessMessage("Customer added successfully with customer")
-			;
-		Thread.sleep(2000);
+			.checkAlertSuccessMessage("Customer added successfully with customer");
 	}
 	
 	@Test
-	public void deleteCustomerTest() throws InterruptedException {
+	public void deleteCustomerTest() {
 		new BankingPage()
 			.clickOnBankManagerLoginButton()
 			.clickOnCustomerButton()
-			.removeCustomer("Neville")
-			;
-		Thread.sleep(2000);
+			.removeCustomer("Neville");
 	}
 }

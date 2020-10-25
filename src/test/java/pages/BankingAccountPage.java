@@ -4,7 +4,7 @@ import core.BasePage;
 
 public class BankingAccountPage extends BasePage {
 	public BankingCustomerPage clickOnLogOutButton() {
-		clickOnButton("//button[@ng-show='logout']");
+		clickOnButton("//button[@class='btn logout']");
 		return new BankingCustomerPage();
 	}
 }

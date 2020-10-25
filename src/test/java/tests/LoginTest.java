@@ -13,19 +13,14 @@ public class LoginTest extends BaseTest{
 			.clickOnCustomerLoginButton()
 			.selectAccount("Harry Potter")
 			.clickOnLoginButton();
-			;
-		Thread.sleep(2000);
 	}
 	
 	@Test
-	public void LogoutFromTheAccountTest() throws InterruptedException {
+	public void LogoutFromTheAccountTest() {
 		new BankingPage()
 			.clickOnCustomerLoginButton()
 			.selectAccount("Harry Potter")
 			.clickOnLoginButton()
-			.clickOnLogOutButton()
-			;
-		;
-		Thread.sleep(2000);
+			.clickOnLogOutButton();
 	}
 }

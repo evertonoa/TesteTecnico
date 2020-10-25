@@ -12,6 +12,7 @@ public class AccountPage extends BasePage {
 	public final String CONFIRM_DEPOSIT_BUTTON_XPATH = "//button[@type='submit']";
 	public final String WITHDRAWL_BUTTON_XPATH = "//button[@ng-click='withdrawl()']";
 	public final String CONFIRM_WITHDRAW_BUTTON_XPATH = "//button[@type='submit']";
+	public final String BALANCE_XPATH = "//div[@ng-hide]/strong[2]";
 	
 	public BankingCustomerPage clickOnLogOutButton() {
 		clickOnButton(LOGOUT_BUTTON_XPATH);
@@ -54,6 +55,10 @@ public class AccountPage extends BasePage {
 	public AccountPage clickOnConfirmWithdrawButton() {
 		clickOnButton(CONFIRM_WITHDRAW_BUTTON_XPATH);
 		return this;
+	}
+	
+	public String getAccountBalance() {
+		return getText(BALANCE_XPATH);
 	}
 	
 }

@@ -13,9 +13,11 @@ public class AccountTest extends BaseTest{
 	public final String CUSTOMER_NAME = "Harry Potter";
 	public final String CURRENCY = "Dollar";
 	public final String ALERT_SUCCESS_MESSAGE_TXT = "Account created successfully with account Number";
+	public final String AMOUNT_TO_BE_DEPOSITED = "100";
+	public final String DEPOSIT_SUCCESS_MESSAGE_XPATH = "//span[@ng-show='message']";
 	
 	@Test
-	public void openAccountTest() throws InterruptedException {
+	public void openAccountTest() {
 		new BankingPage()
 			.clickOnBankManagerLoginButton()
 			.clickOnOpenAccountButton()
@@ -37,5 +39,19 @@ public class AccountTest extends BaseTest{
 
 		Assert.assertEquals(accountNumber, new AccountPage().getText("/html/body/div[3]/div/div[2]/div/div[2]/strong[1]"));
 //		melhorar o xpath
+	}
+	
+	@Test
+	public void depositTest() {
+		new BankingPage()
+			.clickOnCustomerLoginButton()
+			.selectAccountName(CUSTOMER_NAME)
+			.clickOnLoginButton()
+			.clickOnDepositButton()
+			.typeDepositAmount(AMOUNT_TO_BE_DEPOSITED)
+			.clickOnConfirmDepositButton();
+			;
+			
+		Assert.assertEquals("Deposit Successful", new AccountPage().getText(DEPOSIT_SUCCESS_MESSAGE_XPATH));
 	}
 }

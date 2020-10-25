@@ -1,9 +1,11 @@
 package tests;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import core.BaseTest;
 import pages.BankingPage;
+import pages.OpenAccountPage;
 
 public class AccountTest extends BaseTest{
 	
@@ -15,7 +17,9 @@ public class AccountTest extends BaseTest{
 			.selectCustomer("Harry Potter")
 			.selectCurrency("Dollar")
 			.clickOnProcessButton()
-			.checkAlertSuccessMessage("Account created successfully with account Number");
+			;
+		String alertSuccessMessage = new OpenAccountPage().getAlertSuccessMessage();
+		Assert.assertTrue(alertSuccessMessage.contains("Account created successfully with account Number"));
 	}
 	
 	

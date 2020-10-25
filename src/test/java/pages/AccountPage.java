@@ -10,6 +10,8 @@ public class AccountPage extends BasePage {
 	public final String DEPOSIT_BUTTON_XPATH = "//button[contains(text(), 'Deposit')]";
 	public final String AMOUNT_TXT_FIELD_XPATH = "//input[@placeholder='amount']";
 	public final String CONFIRM_DEPOSIT_BUTTON_XPATH = "//button[@type='submit']";
+	public final String WITHDRAWL_BUTTON_XPATH = "//button[@ng-click='withdrawl()']";
+	public final String CONFIRM_WITHDRAW_BUTTON_XPATH = "//button[@type='submit']";
 	
 	public BankingCustomerPage clickOnLogOutButton() {
 		clickOnButton(LOGOUT_BUTTON_XPATH);
@@ -34,8 +36,24 @@ public class AccountPage extends BasePage {
 		return this;
 	}
 	
-	public void clickOnConfirmDepositButton() {
+	public AccountPage clickOnConfirmDepositButton() {
 		clickOnButton(CONFIRM_DEPOSIT_BUTTON_XPATH);
+		return this;
+	}
+	
+	public AccountPage typeWithdrawAmount(String withdrawAmount) {
+		typeTextIntoField(AMOUNT_TXT_FIELD_XPATH, withdrawAmount);
+		return this;
+	}
+	
+	public AccountPage clickOnWithdrawlButton() {
+		clickOnButton(WITHDRAWL_BUTTON_XPATH);
+		return this;
+	}
+	
+	public AccountPage clickOnConfirmWithdrawButton() {
+		clickOnButton(CONFIRM_WITHDRAW_BUTTON_XPATH);
+		return this;
 	}
 	
 }

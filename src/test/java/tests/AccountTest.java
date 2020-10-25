@@ -13,8 +13,10 @@ public class AccountTest extends BaseTest{
 	public final String CUSTOMER_NAME = "Harry Potter";
 	public final String CURRENCY = "Dollar";
 	public final String ALERT_SUCCESS_MESSAGE_TXT = "Account created successfully with account Number";
-	public final String AMOUNT_TO_BE_DEPOSITED = "100";
+	public final String AMOUNT_TO_BE_DEPOSITED = "200";
+	public final String AMOUNT_TO_BE_WITHDREW = "100";
 	public final String DEPOSIT_SUCCESS_MESSAGE_XPATH = "//span[@ng-show='message']";
+	public final String WITHDRAW_SUCCESS_MESSAGE_XPATH = "//span[@ng-show='message']";
 	
 	@Test
 	public void openAccountTest() {
@@ -54,4 +56,25 @@ public class AccountTest extends BaseTest{
 			
 		Assert.assertEquals("Deposit Successful", new AccountPage().getText(DEPOSIT_SUCCESS_MESSAGE_XPATH));
 	}
+	
+	@Test
+	public void withdrawlTest() throws InterruptedException {
+		new BankingPage()
+			.clickOnCustomerLoginButton()
+			.selectAccountName(CUSTOMER_NAME)
+			.clickOnLoginButton()
+			.clickOnDepositButton()
+			.typeDepositAmount(AMOUNT_TO_BE_DEPOSITED)
+			.clickOnConfirmDepositButton()
+			.clickOnWithdrawlButton();
+		
+		Thread.sleep(1000);
+		
+		new AccountPage().typeDepositAmount(AMOUNT_TO_BE_WITHDREW)
+			.clickOnConfirmWithdrawButton()
+			;
+			
+		Assert.assertEquals("Transaction successful", new AccountPage().getText(WITHDRAW_SUCCESS_MESSAGE_XPATH));
+	}
+	
 }

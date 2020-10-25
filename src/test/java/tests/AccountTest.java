@@ -15,8 +15,13 @@ public class AccountTest extends BaseTest{
 	public final String ALERT_SUCCESS_MESSAGE_TXT = "Account created successfully with account Number";
 	public final String AMOUNT_TO_BE_DEPOSITED = "200";
 	public final String AMOUNT_TO_BE_WITHDREW = "100";
+	public final String AMOUNT_TO_BE_WITHDREW_MORE_THAN_BALANCE = "300";
 	public final String DEPOSIT_SUCCESS_MESSAGE_XPATH = "//span[@ng-show='message']";
+	public final String DEPOSIT_SUCCESS_MESSAGE = "Deposit Successful";
 	public final String WITHDRAW_SUCCESS_MESSAGE_XPATH = "//span[@ng-show='message']";
+	public final String WITHDRAW_SUCCESS_MESSAGE = "Transaction successful";
+	public final String WITHDRAW_FAIL_MESSAGE_XPATH = "//span[@ng-show='message']";
+	public final String WITHDRAW_FAIL_MESSAGE = "Transaction Failed. You can not withdraw amount more than the balance.";
 	
 	@Test
 	public void openAccountTest() {
@@ -25,8 +30,7 @@ public class AccountTest extends BaseTest{
 			.clickOnOpenAccountButton()
 			.selectCustomer(CUSTOMER_NAME)
 			.selectCurrency(CURRENCY)
-			.clickOnProcessButton()
-			;
+			.clickOnProcessButton();
 		
 		String alertSuccessMessage = new OpenAccountPage().getAlertSuccessMessage();
 		Assert.assertTrue(alertSuccessMessage.contains(ALERT_SUCCESS_MESSAGE_TXT));
@@ -52,9 +56,8 @@ public class AccountTest extends BaseTest{
 			.clickOnDepositButton()
 			.typeDepositAmount(AMOUNT_TO_BE_DEPOSITED)
 			.clickOnConfirmDepositButton();
-			;
 			
-		Assert.assertEquals("Deposit Successful", new AccountPage().getText(DEPOSIT_SUCCESS_MESSAGE_XPATH));
+		Assert.assertEquals(DEPOSIT_SUCCESS_MESSAGE, new AccountPage().getText(DEPOSIT_SUCCESS_MESSAGE_XPATH));
 	}
 	
 	@Test
@@ -71,10 +74,22 @@ public class AccountTest extends BaseTest{
 		Thread.sleep(1000);
 		
 		new AccountPage().typeDepositAmount(AMOUNT_TO_BE_WITHDREW)
+			.clickOnConfirmWithdrawButton();
+			
+		Assert.assertEquals(WITHDRAW_SUCCESS_MESSAGE, new AccountPage().getText(WITHDRAW_SUCCESS_MESSAGE_XPATH));
+	}
+	
+	@Test
+	public void withdrawMoreThanBalanceTest() throws InterruptedException {
+		new BankingPage()
+			.clickOnCustomerLoginButton()
+			.selectAccountName(CUSTOMER_NAME)
+			.clickOnLoginButton()
+			.clickOnWithdrawlButton()
+			.typeDepositAmount(AMOUNT_TO_BE_WITHDREW)
 			.clickOnConfirmWithdrawButton()
 			;
 			
-		Assert.assertEquals("Transaction successful", new AccountPage().getText(WITHDRAW_SUCCESS_MESSAGE_XPATH));
+		Assert.assertEquals(WITHDRAW_FAIL_MESSAGE, new AccountPage().getText(WITHDRAW_FAIL_MESSAGE_XPATH));
 	}
-	
 }

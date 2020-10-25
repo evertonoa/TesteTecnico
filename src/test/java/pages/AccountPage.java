@@ -6,6 +6,7 @@ public class AccountPage extends BasePage {
 	
 	public final String LOGOUT_BUTTON_XPATH = "//button[@class='btn logout']";
 	public final String ACCOUNT_NAME_XPATH = "//span[@class='fontBig ng-binding']";
+	public final String COMBO_ACCOUNT_NUMBER_ID = "accountSelect";
 	
 	public BankingCustomerPage clickOnLogOutButton() {
 		clickOnButton(LOGOUT_BUTTON_XPATH);
@@ -14,6 +15,10 @@ public class AccountPage extends BasePage {
 	
 	public String getWelcomeAccountName() {
 		return getText(ACCOUNT_NAME_XPATH);
+	}
+	
+	public void selectAccountNumberOnCombo(String accountNumber) {
+		selectCombo(COMBO_ACCOUNT_NUMBER_ID, accountNumber);
 	}
 	
 }

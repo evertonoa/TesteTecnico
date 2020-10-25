@@ -34,6 +34,7 @@ public class CustomerTest extends BaseTest{
 			.clickOnCustomerListButton()
 			.findCustomerOnTheList(FIRST_NAME);
 		//NAO SEI FAZER O ASSERTION PARA VERIFICAR SE O CUSTOMER FOI ADICIONADO
+//		veficar se name last name e post code sao iguais aos adicionados
 	}
 	
 	@Test

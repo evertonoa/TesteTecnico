@@ -13,7 +13,8 @@ public class OpenAccountPage extends BasePage{
 	public final String SELECT_CUSTUMER_ID = "userSelect";
 	public final String SELECT_CURRENCY_ID = "currency";
 	public final String PROCESS_BUTTON_XPATH = "//button[@type='submit']";
-
+	public final String HOME_BUTTON_XPATH = "//button[@class='btn home']";
+	
 	public OpenAccountPage selectCustomer(String text) {
 		WebElement element = getDriver().findElement(By.id(SELECT_CUSTUMER_ID));
 		Select combo = new Select(element);
@@ -35,5 +36,10 @@ public class OpenAccountPage extends BasePage{
 	
 	public String getAlertSuccessMessage() {
 		return getAlertMessage();
+	}
+	
+	public BankingPage clickOnHomeButton() {
+		clickOnButton(HOME_BUTTON_XPATH);
+		return new BankingPage();
 	}
 }

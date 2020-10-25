@@ -4,6 +4,8 @@ import static core.DriverFactory.getDriver;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class BasePage {
 
@@ -39,4 +41,11 @@ public class BasePage {
 	public String getPageUrl() {
 		return getDriver().getCurrentUrl();
 	}
+	
+	public void selectCombo(String xpath, String text) {
+		WebElement element = getDriver().findElement(By.id(xpath));
+		Select combo = new Select(element);
+		combo.selectByVisibleText(text);
+	}
+	
 }

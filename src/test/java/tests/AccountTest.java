@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import core.BaseTest;
+import pages.AccountPage;
 import pages.BankingPage;
 import pages.OpenAccountPage;
 
@@ -14,7 +15,7 @@ public class AccountTest extends BaseTest{
 	public final String ALERT_SUCCESS_MESSAGE_TXT = "Account created successfully with account Number";
 	
 	@Test
-	public void openAccountTest() {
+	public void openAccountTest() throws InterruptedException {
 		new BankingPage()
 			.clickOnBankManagerLoginButton()
 			.clickOnOpenAccountButton()
@@ -22,7 +23,19 @@ public class AccountTest extends BaseTest{
 			.selectCurrency(CURRENCY)
 			.clickOnProcessButton()
 			;
+		
 		String alertSuccessMessage = new OpenAccountPage().getAlertSuccessMessage();
 		Assert.assertTrue(alertSuccessMessage.contains(ALERT_SUCCESS_MESSAGE_TXT));
+		String accountNumber = alertSuccessMessage.substring(50, 54);
+
+		new OpenAccountPage()
+			.clickOnHomeButton()
+			.clickOnCustomerLoginButton()
+			.selectAccountName(CUSTOMER_NAME)
+			.clickOnLoginButton()
+			.selectAccountNumberOnCombo(accountNumber);;
+
+		Assert.assertEquals(accountNumber, new AccountPage().getText("/html/body/div[3]/div/div[2]/div/div[2]/strong[1]"));
+//		melhorar o xpath
 	}
 }

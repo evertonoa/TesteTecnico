@@ -1,6 +1,7 @@
 package tests;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import core.BaseTest;
@@ -34,12 +35,12 @@ public class TransationsTest extends BaseTest{
 			.typeDepositAmount(AMOUNT_TO_BE_DEPOSITED)
 			.clickOnConfirmDepositButton();
 
-		Assert.assertEquals(DEPOSIT_SUCCESS_MESSAGE, accountPage.getSuccessDepositMessage());
 		
 		int balanceAfterDeposit = Integer.parseInt(accountPage.getAccountBalance());
 		int amountDeposited = Integer.parseInt(AMOUNT_TO_BE_DEPOSITED);
 		
-		Assert.assertEquals(balanceBeforeDeposit+amountDeposited, balanceAfterDeposit);
+		assertEquals(DEPOSIT_SUCCESS_MESSAGE, accountPage.getSuccessDepositMessage());
+		assertEquals(balanceBeforeDeposit+amountDeposited, balanceAfterDeposit);
 	}
 	
 	@Test
@@ -61,12 +62,12 @@ public class TransationsTest extends BaseTest{
 		accountPage.typeWithdrawAmount(AMOUNT_TO_BE_WITHDREW)
 			.clickOnConfirmWithdrawButton();
 			
-		Assert.assertEquals(WITHDRAW_SUCCESS_MESSAGE, new AccountPage().getSuccessWithdrawMessage());
+		assertEquals(WITHDRAW_SUCCESS_MESSAGE, new AccountPage().getSuccessWithdrawMessage());
 		
 		int balanceAfterWithdraw = Integer.parseInt(accountPage.getAccountBalance());
 		int amountWithdrew = Integer.parseInt(AMOUNT_TO_BE_WITHDREW);
 		
-		Assert.assertEquals(balanceBeforeWithdraw-amountWithdrew, balanceAfterWithdraw);
+		assertEquals(balanceBeforeWithdraw-amountWithdrew, balanceAfterWithdraw);
 	}
 	
 	@Test
@@ -79,6 +80,6 @@ public class TransationsTest extends BaseTest{
 			.typeDepositAmount(AMOUNT_TO_BE_WITHDREW)
 			.clickOnConfirmWithdrawButton();
 			
-		Assert.assertEquals(WITHDRAW_FAIL_MESSAGE, new AccountPage().getFailWithdrawMessage());
+		assertEquals(WITHDRAW_FAIL_MESSAGE, new AccountPage().getFailWithdrawMessage());
 	}
 }

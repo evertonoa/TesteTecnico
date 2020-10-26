@@ -1,12 +1,15 @@
 package tests;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 import core.BaseTest;
 import pages.AddCustomerPage;
 import pages.BankingManagerPage;
 import pages.BankingPage;
+import pages.CustomersListPage;
 
 public class CustomerTest extends BaseTest{
 	
@@ -28,13 +31,16 @@ public class CustomerTest extends BaseTest{
 			.AddCustomer();
 		
 		String alertSuccessMessage = new AddCustomerPage().getAlertSuccessMessage();
-		Assert.assertTrue(alertSuccessMessage.contains(ALERT_MESSAGE_SUCCESS_TXT));
+		assertTrue(alertSuccessMessage.contains(ALERT_MESSAGE_SUCCESS_TXT));
 		
 		new BankingManagerPage()
 			.clickOnCustomerListButton()
 			.findCustomerOnTheList(FIRST_NAME);
-		//NAO SEI FAZER O ASSERTION PARA VERIFICAR SE O CUSTOMER FOI ADICIONADO
-//		veficar se name last name e post code sao iguais aos adicionados
+		
+		CustomersListPage customer = new CustomersListPage();
+		assertEquals(FIRST_NAME, customer.getFirstName());
+		assertEquals(LAST_NAME, customer.getLastName());
+		assertEquals(POST_CODE, customer.getPostCode());
 	}
 	
 	@Test
@@ -53,18 +59,15 @@ public class CustomerTest extends BaseTest{
 			.AddCustomer();
 			
 		String alertCustomerDuplicateMessage = new AddCustomerPage().getAlertCustumerDuplicateMessage();
-		Assert.assertTrue(alertCustomerDuplicateMessage.contains(ALERT_MESSAGE_CUSTOMER_DUPLICATE_TXT));
+		assertTrue(alertCustomerDuplicateMessage.contains(ALERT_MESSAGE_CUSTOMER_DUPLICATE_TXT));
 	}
 	
 	@Test
-	public void deleteCustomerTest() throws InterruptedException {
+	public void deleteCustomerTest() {
 		new BankingPage()
 			.clickOnBankManagerLoginButton()
 			.clickOnCustomerListButton()
 			.removeCustomer("Neville")
-			.findCustomerOnTheList("Nevillexxxxx")
-			;
-		//NAO SEI FAZER O ASSERTION PARA VERIFICAR SE O CUSTOMER FOI REMOVIDO
-		Thread.sleep(2000);
+			.findCustomerOnTheList("Neville");
 	}
 }

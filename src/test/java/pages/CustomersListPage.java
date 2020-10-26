@@ -9,12 +9,17 @@ public class CustomersListPage extends BasePage {
 	public final String FIRST_NAME_XPATH = "//table[@class='table table-bordered table-striped']/tbody/tr/td[1]";
 	public final String LAST_NAME_XPATH = "//table[@class='table table-bordered table-striped']/tbody/tr/td[2]";
 	public final String POST_CODE_XPATH = "//table[@class='table table-bordered table-striped']/tbody/tr/td[3]";
+	public final String CUSTOMER_LIST_TABLE_XPATH = "//table[@class='table table-bordered table-striped']";
 	
 	
 	public CustomersListPage findCustomerOnTheList(String customerName) {
 		clearTextField(SEARCH_CUSTOMER_FIELD_XPATH);
 		typeTextIntoField(SEARCH_CUSTOMER_FIELD_XPATH, customerName);
 		return this;
+	}
+	
+	public int getCustomerListTableSize() {
+		return getTableSize(CUSTOMER_LIST_TABLE_XPATH);
 	}
 	
 	public CustomersListPage removeCustomer(String text) {

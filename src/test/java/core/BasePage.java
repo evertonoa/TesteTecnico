@@ -47,4 +47,8 @@ public class BasePage {
 		Select combo = new Select(element);
 		combo.selectByVisibleText(text);
 	}
+	
+	public int getTableSize(String xpath) {
+		return getDriver().findElements(By.xpath(xpath)).size();
+	}
 }

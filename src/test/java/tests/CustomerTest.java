@@ -63,11 +63,13 @@ public class CustomerTest extends BaseTest{
 	}
 	
 	@Test
-	public void deleteCustomerTest() {
+	public void deleteCustomerTest() throws InterruptedException {
 		new BankingPage()
 			.clickOnBankManagerLoginButton()
 			.clickOnCustomerListButton()
 			.removeCustomer("Neville")
 			.findCustomerOnTheList("Neville");
+		
+		assertEquals(1, new CustomersListPage().getCustomerListTableSize());
 	}
 }

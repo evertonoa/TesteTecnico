@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import core.BaseTest;
 import pages.AccountPage;
-import pages.BankingPage;
+import pages.BankingMainPage;
 
 public class TransationsTest extends BaseTest{
 
@@ -23,7 +23,7 @@ public class TransationsTest extends BaseTest{
 	@Test
 	public void depositTest() {
 		AccountPage accountPage = new AccountPage();
-		new BankingPage()
+		new BankingMainPage()
 			.clickOnCustomerLoginButton()
 			.selectAccountName(CUSTOMER_NAME)
 			.clickOnLoginButton()
@@ -46,7 +46,7 @@ public class TransationsTest extends BaseTest{
 	@Test
 	public void withdrawlTest() throws InterruptedException {
 		AccountPage accountPage = new AccountPage();
-		new BankingPage()
+		new BankingMainPage()
 			.clickOnCustomerLoginButton()
 			.selectAccountName(CUSTOMER_NAME)
 			.clickOnLoginButton()
@@ -72,7 +72,7 @@ public class TransationsTest extends BaseTest{
 	
 	@Test
 	public void withdrawMoreThanBalanceTest() throws InterruptedException {
-		new BankingPage()
+		new BankingMainPage()
 			.clickOnCustomerLoginButton()
 			.selectAccountName(CUSTOMER_NAME)
 			.clickOnLoginButton()

@@ -25,9 +25,9 @@ public class AccountPage extends BasePage {
 
 
 	
-	public BankingCustomerPage clickOnLogOutButton() {
+	public CustomerListPage clickOnLogOutButton() {
 		clickOnButton(LOGOUT_BUTTON_XPATH);
-		return new BankingCustomerPage();
+		return new CustomerListPage();
 	}
 	
 	public String getWelcomeAccountName() {

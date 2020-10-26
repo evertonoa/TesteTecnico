@@ -38,8 +38,8 @@ public class OpenAccountPage extends BasePage{
 		return getAlertMessage();
 	}
 	
-	public BankingPage clickOnHomeButton() {
+	public BankingMainPage clickOnHomeButton() {
 		clickOnButton(HOME_BUTTON_XPATH);
-		return new BankingPage();
+		return new BankingMainPage();
 	}
 }

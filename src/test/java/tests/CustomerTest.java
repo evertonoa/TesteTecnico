@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import core.BaseTest;
 import pages.AddCustomerPage;
-import pages.BankingManagerPage;
-import pages.BankingPage;
+import pages.ManagerPage;
+import pages.BankingMainPage;
 import pages.CustomersListPage;
 
 public class CustomerTest extends BaseTest{
@@ -22,7 +22,7 @@ public class CustomerTest extends BaseTest{
 
 	@Test
 	public void addNewCustomerTest() {
-		new BankingPage()
+		new BankingMainPage()
 			.clickOnBankManagerLoginButton()
 			.clickOnAddCustomerButton()
 			.typeFirstName(FIRST_NAME)
@@ -33,7 +33,7 @@ public class CustomerTest extends BaseTest{
 		String alertSuccessMessage = new AddCustomerPage().getAlertSuccessMessage();
 		assertTrue(alertSuccessMessage.contains(ALERT_MESSAGE_SUCCESS_TXT));
 		
-		new BankingManagerPage()
+		new ManagerPage()
 			.clickOnCustomerListButton()
 			.findCustomerOnTheList(FIRST_NAME);
 		
@@ -45,7 +45,7 @@ public class CustomerTest extends BaseTest{
 	
 	@Test
 	public void addDuplicateCustomerTest() throws InterruptedException {
-		new BankingPage()
+		new BankingMainPage()
 			.clickOnBankManagerLoginButton()
 			.clickOnAddCustomerButton()
 			.typeFirstName(FIRST_NAME)
@@ -64,7 +64,7 @@ public class CustomerTest extends BaseTest{
 	
 	@Test
 	public void deleteCustomerTest() throws InterruptedException {
-		new BankingPage()
+		new BankingMainPage()
 			.clickOnBankManagerLoginButton()
 			.clickOnCustomerListButton()
 			.removeCustomer("Neville")

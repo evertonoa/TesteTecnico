@@ -2,7 +2,7 @@ package pages;
 
 import core.BasePage;
 
-public class BankingManagerPage extends BasePage {
+public class ManagerPage extends BasePage {
 
 	public final String ADD_CUSTOMER_BUTTON_XPATH = "//button[@ng-click='addCust()']";
 	public final String OPEN_ACCOUNT__BUTTON_XPATH = "//button[@ng-click='openAccount()']";

@@ -5,8 +5,8 @@ import org.junit.Test;
 
 import core.BaseTest;
 import pages.AccountPage;
-import pages.BankingCustomerPage;
-import pages.BankingPage;
+import pages.CustomerListPage;
+import pages.BankingMainPage;
 
 public class LoginTest extends BaseTest{
 	
@@ -15,7 +15,7 @@ public class LoginTest extends BaseTest{
 	
 	@Test
 	public void loginIntoTheAccountTest () {
-		new BankingPage()
+		new BankingMainPage()
 			.clickOnCustomerLoginButton()
 			.selectAccountName(CUSTOMER_NAME)
 			.clickOnLoginButton();
@@ -25,7 +25,7 @@ public class LoginTest extends BaseTest{
 	
 	@Test
 	public void LogoutFromTheAccountTest() {
-		new BankingPage()
+		new BankingMainPage()
 			.clickOnCustomerLoginButton()
 			.selectAccountName(CUSTOMER_NAME)
 			.clickOnLoginButton();
@@ -35,7 +35,7 @@ public class LoginTest extends BaseTest{
 		new AccountPage()
 			.clickOnLogOutButton();
 		
-		String currentUrl = new BankingCustomerPage().getPageUrl();
+		String currentUrl = new CustomerListPage().getPageUrl();
 		Assert.assertEquals(currentUrl, CUSTOMER_URL);
 	}
 }

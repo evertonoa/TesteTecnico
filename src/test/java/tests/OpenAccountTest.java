@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import core.BaseTest;
 import pages.AccountPage;
-import pages.BankingPage;
+import pages.BankingMainPage;
 import pages.OpenAccountPage;
 
 public class OpenAccountTest extends BaseTest{
@@ -16,7 +16,7 @@ public class OpenAccountTest extends BaseTest{
 	
 	@Test
 	public void openAccountTest() {
-		new BankingPage()
+		new BankingMainPage()
 			.clickOnBankManagerLoginButton()
 			.clickOnOpenAccountButton()
 			.selectCustomer(CUSTOMER_NAME)
